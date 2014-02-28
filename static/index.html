@@ -43,15 +43,21 @@
 
         <script>
             $(function() {
-                $(".knob_readonly").knob();
+                $(".knob_readonly").knob(
+                    {
+                        'format': function(e)
+                        {
+                            return e.toPrecision(3);
+                        }
+                    });
                 $(".knob_action").knob(
                     {
-                    'change': function(e){
+                        'change': function(e)
+                        {
                             if (e > 50) skink.send('$volume_high');
                             else skink.send('$volume_low');
                         }
-                    }
-                );
+                    });
 
                 setTimeout(
                     function() {
