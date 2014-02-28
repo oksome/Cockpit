@@ -30,15 +30,24 @@ def weather(topic, message):
 
 minion.setup()
 
+
+def update():
+    print('Sending update request')
+    minion.send('update:sensor', {})
+server.CALLBACKS['update'] = update
+
+
+def volume(value):
+    minion.send('do:mpd.volume', {'value': value})
+server.CALLBACKS['volume_low'] = lambda: volume(30)
+server.CALLBACKS['volume_high'] = lambda: volume(60)
+
+
 print('Waiting for client...')
 while len(server.LISTENERS) < 1:
     time.sleep(0.1)
 print('Client found')
 
-
-def update():
-    print('Sending update request')
-    minion.send('update:sensor', {})
 
 p.document.getElementById('temperature').onclick = update
 p.document.getElementById('humidity').onclick = update

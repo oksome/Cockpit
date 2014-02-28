@@ -6,22 +6,33 @@
     </head>
     <body>
 
-        <section>
-            <div>
-                <input id='temperature' type="text" value="00" class="dial"
-                        data-step="0.1" data-min="0" data-max="40" readonly
-                        data-fgColor="#ff8000" data-thickness=".2"
-                        data-width="200" data-bgColor="inherit">
-            </div>
-        </section>
+        <main>
+            <section>
+                <div>
+                    <input id='temperature' type="text" value="40" class="knob_readonly"
+                            data-step="0.1" data-min="0" data-max="40" readonly
+                            data-fgColor="#ff8000" data-thickness=".2"
+                            data-width="200" data-bgColor="inherit">
+                </div>
+            </section>
 
-        <section>
-            <div>
-                <input id='humidity' type="text" value="00" class="dial"
-                        data-step="0.1" data-min="0" data-max="100" readonly
-                        data-thickness=".2" data-bgColor="inherit">
-            </div>
-        </section>
+            <section>
+                <div>
+                    <input id='humidity' type="text" value="99" class="knob_readonly"
+                            data-step="0.1" data-min="0" data-max="100" readonly
+                            data-thickness=".2" data-bgColor="inherit">
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <input id="volume" type="text" value="50" class="knob_action"
+                           data-min="0" data-max="100"
+                           data-fgColor="#62ff00" data-thickness=".2"
+                           data-bgColor="inherit">
+                </div>
+            </section>
+        </main>
 
         <div id='stderr'>
         </div>
@@ -32,13 +43,17 @@
 
         <script>
             $(function() {
-                $(".dial").knob(
-                    {
-                    'change':function(e){
-                            console.log(e);
-                        }
-                    }
-                );
+               $(".knob_readonly").knob();
+               $(".knob_action").knob(
+                   {
+                   'change': function(e){
+                           if (e > 50) skink.send('$volume_high');
+                           else skink.send('$volume_low');
+                       }
+                   }
+               );
+
+               skink.send('$update');
             });
         </script>
     </body>
