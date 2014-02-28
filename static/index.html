@@ -2,21 +2,44 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     </head>
     <body>
-        <h1>Yolo</h1>
+
+        <section>
+            <div>
+                <input id='temperature' type="text" value="00" class="dial"
+                        data-step="0.1" data-min="0" data-max="40" readonly
+                        data-fgColor="#ff8000" data-thickness=".2"
+                        data-width="200" data-bgColor="inherit">
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <input id='humidity' type="text" value="00" class="dial"
+                        data-step="0.1" data-min="0" data-max="100" readonly
+                        data-thickness=".2" data-bgColor="inherit">
+            </div>
+        </section>
+
         <div id='stderr'>
-            No problem so far
         </div>
 
-        <div>
-            <span id='temperature'>--.-</span> °C
-        </div>
-        <div>
-            <span id='humidity'>--.-</span> &#37;
-        </div>
+        <script type="application/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="application/javascript" src="http://okso.be/F/jquery.knob.js"></script>
+        <script type="application/javascript" src="/skink.js"></script>
 
-        <script type='application/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
-        <script type='application/javascript' src='/skink.js'></script>
+        <script>
+            $(function() {
+                $(".dial").knob(
+                    {
+                    'change':function(e){
+                            console.log(e);
+                        }
+                    }
+                );
+            });
+        </script>
     </body>
 </html>

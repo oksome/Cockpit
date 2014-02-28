@@ -1,0 +1,23 @@
+body {
+    font-family:sans-serif;
+    background-color: #010408;
+    color: #00c4ff;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    margin-top: 2em;
+}
+
+#stderr {
+    text-align: center;
+    font-size: small;
+    color: #ff1d00;
+    margin-top: 2em;
+}

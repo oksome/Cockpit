@@ -17,10 +17,16 @@ minion = Minion('controller.cockpit')
 
 @minion.register('sensor.weather')
 def weather(topic, message):
-    p.document.getElementById('temperature').innerHTML \
+    print('new values: ', message)
+    p.document.getElementById('temperature').value \
         = str(message.get('temperature', '-'))
-    p.document.getElementById('humidity').innerHTML \
+
+    p.document.getElementById('humidity').value \
         = str(message.get('humidity', '-'))
+
+    p.run('''
+        $('.dial').trigger('change');
+        ''')
 
 minion.setup()
 
@@ -31,6 +37,7 @@ print('Client found')
 
 
 def update():
+    print('Sending update request')
     minion.send('update:sensor', {})
 
 p.document.getElementById('temperature').onclick = update
