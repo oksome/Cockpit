@@ -25,7 +25,7 @@ def weather(topic, message):
         = str(message.get('humidity', '-'))
 
     p.run('''
-        $('.dial').trigger('change');
+        $('knob_readonly').trigger('change');
         ''')
 
 minion.setup()
