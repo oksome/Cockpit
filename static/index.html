@@ -43,17 +43,21 @@
 
         <script>
             $(function() {
-               $(".knob_readonly").knob();
-               $(".knob_action").knob(
-                   {
-                   'change': function(e){
-                           if (e > 50) skink.send('$volume_high');
-                           else skink.send('$volume_low');
-                       }
-                   }
-               );
+                $(".knob_readonly").knob();
+                $(".knob_action").knob(
+                    {
+                    'change': function(e){
+                            if (e > 50) skink.send('$volume_high');
+                            else skink.send('$volume_low');
+                        }
+                    }
+                );
 
-               skink.send('$update');
+                setTimeout(
+                    function() {
+                        skink.send('$update');
+                    },
+                    500);
             });
         </script>
     </body>
