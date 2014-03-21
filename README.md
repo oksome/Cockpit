@@ -9,7 +9,11 @@ Howto
 -----
 
 ```
-pip install skink
+pip install skink intercom
 cd Cockpit
 python3 cockpit
 ```
+
+*Intercom*
+
+Requires a broker and the minion [arduino2.py](https://github.com/oksome/Intercom/blob/master/intercom/minions/arduino2.py) to run.
