@@ -14,6 +14,6 @@ cd Cockpit
 python3 cockpit
 ```
 
-*Intercom*
+**Intercom**
 
 Requires a broker and the minion [arduino2.py](https://github.com/oksome/Intercom/blob/master/intercom/minions/arduino2.py) to run.
